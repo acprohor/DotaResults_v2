@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.acpro.dotaresults.TournamentActivity"
+    tools:showIn="@layout/activity_tournament">
+
+    <TextView
+        android:id="@+id/textTourName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:singleLine="false"
+        android:text="Tournament name"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTourDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTourName" />
+
+    <TextView
+        android:id="@+id/textTourLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:singleLine="false"
+        android:text="location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTourDate" />
+
+    <TextView
+        android:id="@+id/textTourPrize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="prize"
+        app:layout_constraintBottom_toBottomOf="@+id/textTourDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textTourDate" />
+
+    <Button
+        android:id="@+id/buttonGroupTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        android:text="Table"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonGroupOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonGroupMatches"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonGroupMatches" />
+
+    <Button
+        android:id="@+id/buttonGroupMatches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="matches"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonGroupTable"
+        app:layout_constraintStart_toEndOf="@+id/buttonGroupTable"
+        app:layout_constraintTop_toTopOf="@+id/buttonGroupTable"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textTourGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Group stage"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGroupTable"
+        app:layout_constraintEnd_toEndOf="@+id/buttonGroupMatches"
+        app:layout_constraintStart_toStartOf="@+id/buttonGroupTable" />
+
+    <TextView
+        android:id="@+id/textTourOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Play-OFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGroupOff"
+        app:layout_constraintEnd_toEndOf="@+id/buttonGroupOff"
+        app:layout_constraintStart_toStartOf="@+id/buttonGroupOff" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <fragment
+        android:id="@+id/groupTable"
+        android:name="com.example.acpro.dotaresults.fragments.GroupTable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        tools:layout="@layout/fragment_group_table" />
+
+</android.support.constraint.ConstraintLayout>
