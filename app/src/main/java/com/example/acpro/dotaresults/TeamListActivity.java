@@ -41,8 +41,7 @@ public class TeamListActivity extends AppCompatActivity
     ProgressBar progressBar;
     TextView textInfo;
 
-    String globalUrl = "https://www.cybersport.ru/base/teams";
-    String globalUrl2 = "https://www.cybersport.ru/base/teams?sort=amount&disciplines=21&page=1";
+    String globalUrl = "https://www.cybersport.ru/base/teams?sort=amount&disciplines=21&page=1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ public class TeamListActivity extends AppCompatActivity
             Document document;
 
             try {
-                document = Jsoup.connect(globalUrl2).userAgent("Mozilla").get();
+                document = Jsoup.connect(globalUrl).userAgent("Mozilla").get();
                 content = document.getElementsByClass("tables tables-base tables-base--teams").select("tr");
 
                 teams.clear();
