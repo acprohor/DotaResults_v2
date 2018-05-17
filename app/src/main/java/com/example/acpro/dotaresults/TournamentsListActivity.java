@@ -33,7 +33,7 @@ public class TournamentsListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ButtonsBar.OnFragmentInteractionListener, ListFragment.OnFragmentInteractionListener{
 
-    public Elements content , content2;
+    public Elements content;
 
     public ArrayList<String> tournamentUrlList = new ArrayList<>();
     public ArrayList<Tournament> tournaments = new ArrayList<>();
@@ -187,9 +187,11 @@ public class TournamentsListActivity extends AppCompatActivity
             Intent matchesIntent = new Intent(this, MainActivity.class);
             startActivity(matchesIntent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
+            startActivity(tournamentsIntent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            startActivity(teamsIntent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

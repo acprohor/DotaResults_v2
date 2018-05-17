@@ -68,6 +68,7 @@ public class TournamentActivity extends AppCompatActivity
         urlTour = tempData.get(0);
         contest = tempData.get(1);
         urlTour = "https://www.cybersport.ru" + urlTour;
+        System.out.println("urltour in tourActivity " + urlTour);
 
         textTourName = findViewById(R.id.textTourName);
         textTourLocation = findViewById(R.id.textTourLocation);
@@ -149,6 +150,7 @@ public class TournamentActivity extends AppCompatActivity
         @Override
         protected String doInBackground(String... strings) {
             ready = true;
+            playoff = true;
             Document document;
             try {
                 document = Jsoup.connect(urlTour).userAgent("Mozilla").get();
@@ -268,7 +270,6 @@ public class TournamentActivity extends AppCompatActivity
                 } else {
                     ready = false;
                 }
-
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -311,6 +312,9 @@ public class TournamentActivity extends AppCompatActivity
                 if (!playoff){
                     textInfo.setVisibility(View.VISIBLE);
                     textInfo.setText("without playoff stage");
+                    loading.setVisibility(View.GONE);
+                    matchList.clear();
+                    tourListView.setAdapter(matchAdapter);
                 } else {
                     if (matchList.size() > 0) {
                         tourListView.setAdapter(matchAdapter);
@@ -368,7 +372,8 @@ public class TournamentActivity extends AppCompatActivity
             Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            startActivity(teamsIntent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

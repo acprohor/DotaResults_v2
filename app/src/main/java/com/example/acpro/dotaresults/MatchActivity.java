@@ -202,7 +202,8 @@ public class MatchActivity extends AppCompatActivity
             Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            startActivity(teamsIntent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

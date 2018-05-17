@@ -12,4 +12,5 @@
     <string name="title_activity_match2">Match2Activity</string>
     <string name="title_activity_tournaments_list">TournamentsListActivity</string>
     <string name="title_activity_tournament">TournamentActivity</string>
+    <string name="title_activity_team_list">TeamListActivity</string>
 </resources>

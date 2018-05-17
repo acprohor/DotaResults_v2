@@ -30,7 +30,11 @@
         <activity
             android:name=".TournamentActivity"
             android:label="@string/title_activity_tournament"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".TeamListActivity"
+            android:label="@string/title_activity_team_list"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

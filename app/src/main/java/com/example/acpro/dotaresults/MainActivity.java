@@ -183,6 +183,8 @@ public class MainActivity extends FragmentActivity
             startActivity(tournamentsIntent);
 
         } else if (id == R.id.nav_slideshow) {
+            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            startActivity(teamsIntent);
 
         } else if (id == R.id.nav_manage) {
 
