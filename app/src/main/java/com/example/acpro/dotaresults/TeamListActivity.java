@@ -59,7 +59,7 @@ public class TeamListActivity extends AppCompatActivity
         new TeamListActivity.NewThread().execute();
         adapter = new TeamAdapter(this, teams);
 
-        final Intent intentTeam = new Intent(this, TournamentActivity.class);
+        final Intent intentTeam = new Intent(this, TeamActivity.class);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

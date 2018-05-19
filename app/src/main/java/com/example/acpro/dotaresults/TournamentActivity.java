@@ -34,7 +34,7 @@ public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         GroupTable.OnFragmentInteractionListener {
 
-    public Elements contentName, match_item, group_item, headerInfo, tourSwitch, table_item, playoff_match_item, playoff_match_item2;
+    public Elements match_item, headerInfo, tourSwitch, table_item, playoff_match_item, playoff_match_item2;
 
     public ArrayList<Match> matchList = new ArrayList<>();
     public ArrayList<TeamRate> tableItemsList = new ArrayList<>();

@@ -1,7 +1,5 @@
 package com.example.acpro.dotaresults.model;
 
-import android.media.Image;
-
 public class Team {
     private String name;
     private String prize;
