@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.acpro.dotaresults.fragments.GroupTable;
 import com.example.acpro.dotaresults.fragments.ListFragment;
 import com.example.acpro.dotaresults.model.Player;
 import com.example.acpro.dotaresults.service.PlayerAdapter;
@@ -36,13 +35,12 @@ public class TeamActivity extends AppCompatActivity
         ListFragment.OnFragmentInteractionListener{
 
     public Elements content, contentName, contentPrize, contentStat, contentWin, contentHonors, contentImg, contentTableItem;
-    String teamName, teamFound, teamPrize, teamMatchCount, teamWinRate, gold, silver, bronze, logoUrl;
-    //TODO класс игрока для списка игроков
+
     public ArrayList<Player> playerList = new ArrayList<>();
     public ArrayList<String> playerUrlList = new ArrayList<>();
     private ListView playersListView;
     private PlayerAdapter adapter;
-    String urlTeam;
+    String urlTeam, teamName, teamFound, teamPrize, teamMatchCount, teamWinRate, gold, silver, bronze, logoUrl;
     TextView textName, textDate, textPrize, textMatchCount, textGold, textSilver, textBronze, textWinRate, textInfo;
     ImageView logo;
     ProgressBar loading, winRate;
@@ -60,29 +58,29 @@ public class TeamActivity extends AppCompatActivity
         urlTeam = "https://www.cybersport.ru" + urlTeam;
         System.out.println("urltour in tourActivity " + urlTeam);
 
-        textName = findViewById(R.id.profileName);
-        textDate = findViewById(R.id.profileDate);
-        textPrize = findViewById(R.id.profilePrize);
+        textName = findViewById(R.id.profileTeamName);
+        textDate = findViewById(R.id.profileTeamDate);
+        textPrize = findViewById(R.id.profileTeamPrize);
         textMatchCount = findViewById(R.id.profileMatchCount);
-        textGold = findViewById(R.id.profileGold);
-        textSilver = findViewById(R.id.profileSilver);
-        textBronze = findViewById(R.id.profileBronze);
-        textWinRate = findViewById(R.id.profileWR);
+        textGold = findViewById(R.id.profileTeamGold);
+        textSilver = findViewById(R.id.profileTeamSilver);
+        textBronze = findViewById(R.id.profileTeamBronze);
+        textWinRate = findViewById(R.id.profileTeamWR);
         textInfo = findViewById(R.id.textInfo);
         playersListView = findViewById(R.id.listView);
         loading = findViewById(R.id.progressBarTable);
-        winRate = findViewById(R.id.profileWinRate);
+        winRate = findViewById(R.id.profilePlayerWinRate);
         logo = findViewById(R.id.profileLogo);
 
         new TeamActivity.NewThreadn().execute();
         adapter = new PlayerAdapter(this, playerList);
 
-        //final Intent gotoPlayer = new Intent(this, MatchActivity.class);
+        final Intent gotoPlayer = new Intent(this, PlayerActivity.class);
         playersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //sendTour.putExtra("num", matchUrlList.get(i));
-                //startActivity(sendTour);
+                gotoPlayer.putExtra("playerUrl", playerUrlList.get(i));
+                startActivity(gotoPlayer);
 
             }
         });
@@ -155,6 +153,8 @@ public class TeamActivity extends AppCompatActivity
                             player.setWinRate(temp1[0] + "%");
                             System.out.println(temp1[0]);
                             playerList.add(player);
+                            System.out.println("URL!!!!!!!!!!!!!" + content.select(".gamers__title").select("a").attr("href"));
+                            playerUrlList.add(content.select(".gamers__title").select("a").attr("href"));
                         } else {
                             break;
                         }

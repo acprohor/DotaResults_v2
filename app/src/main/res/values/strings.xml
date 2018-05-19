@@ -9,10 +9,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_match2">Match2Activity</string>
+    <string name="title_activity_match">MatchActivity</string>
     <string name="title_activity_tournaments_list">TournamentsListActivity</string>
     <string name="title_activity_tournament">TournamentActivity</string>
     <string name="title_activity_team_list">TeamListActivity</string>
     <string name="title_activity_team">TeamActivity</string>
     <string name="title_activity_player_list">PlayerListActivity</string>
+    <string name="title_activity_player">PlayerActivity</string>
 </resources>

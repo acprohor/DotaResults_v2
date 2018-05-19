@@ -33,7 +33,7 @@ public class MainActivity extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ButtonsBar.OnFragmentInteractionListener, ListFragment.OnFragmentInteractionListener {
 
-    public Elements content , content2;
+    public Elements content, content2;
 
     public ArrayList<String> matchUrlList = new ArrayList<>();
     public ArrayList<Match> matches = new ArrayList<>();

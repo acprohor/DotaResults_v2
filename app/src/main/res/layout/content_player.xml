@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.acpro.dotaresults.TeamActivity"
-    tools:showIn="@layout/activity_team">
+    tools:context="com.example.acpro.dotaresults.PlayerActivity"
+    tools:showIn="@layout/activity_player">
 
     <fragment
         android:id="@+id/matchListPlayer"
         android:name="com.example.acpro.dotaresults.fragments.ListFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +28,9 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <ImageView
-        android:id="@+id/profileLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/playerProfilePhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -41,47 +42,47 @@
         app:srcCompat="@drawable/no_image" />
 
     <TextView
-        android:id="@+id/profileTeamName"
+        android:id="@+id/playerProfileNick"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Team name"
+        android:text="Player nick"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profileTeamDate"
+        android:id="@+id/playerProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="date of foundation"
+        android:text="name"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/profileTeamName" />
+        app:layout_constraintTop_toBottomOf="@+id/playerProfileNick" />
 
     <TextView
-        android:id="@+id/profileTeamPrize"
+        android:id="@+id/playerProfileDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="prize"
+        android:text="date"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/profileTeamDate" />
+        app:layout_constraintTop_toBottomOf="@+id/playerProfileName" />
 
     <ProgressBar
-        android:id="@+id/profilePlayerWinRate"
+        android:id="@+id/playerProfileWinRate"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="157dp"
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/profileTeamBronze"
+        app:layout_constraintBottom_toBottomOf="@+id/playerProfileBronze"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileTeamBronze"
+        app:layout_constraintStart_toEndOf="@+id/playerProfileBronze"
         app:layout_constraintTop_toTopOf="@+id/textViewB" />
 
     <TextView
@@ -90,12 +91,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Win Rate"
-        app:layout_constraintBottom_toBottomOf="@+id/profileTeamWR"
-        app:layout_constraintEnd_toStartOf="@+id/profileTeamWR"
+        app:layout_constraintBottom_toBottomOf="@+id/playerProfileWR"
+        app:layout_constraintEnd_toStartOf="@+id/playerProfileWR"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewB"
-        app:layout_constraintStart_toStartOf="@+id/profilePlayerWinRate"
-        app:layout_constraintTop_toTopOf="@+id/profileTeamWR" />
+        app:layout_constraintStart_toEndOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/playerProfileWinRate"
+        app:layout_constraintTop_toTopOf="@+id/playerProfileWR" />
 
     <TextView
         android:id="@+id/textViewG"
@@ -135,49 +136,49 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/profileTeamGold"
+        android:id="@+id/playerProfileGold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="0"
-        app:layout_constraintEnd_toStartOf="@+id/profileTeamSilver"
+        app:layout_constraintEnd_toStartOf="@+id/playerProfileSilver"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/textViewG"
         app:layout_constraintTop_toBottomOf="@+id/textViewG" />
 
     <TextView
-        android:id="@+id/profileTeamSilver"
+        android:id="@+id/playerProfileSilver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/profileTeamGold"
-        app:layout_constraintEnd_toStartOf="@+id/profileTeamBronze"
+        app:layout_constraintBottom_toBottomOf="@+id/playerProfileGold"
+        app:layout_constraintEnd_toStartOf="@+id/playerProfileBronze"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profileTeamGold"
-        app:layout_constraintTop_toTopOf="@+id/profileTeamGold" />
+        app:layout_constraintStart_toEndOf="@+id/playerProfileGold"
+        app:layout_constraintTop_toTopOf="@+id/playerProfileGold" />
 
     <TextView
-        android:id="@+id/profileTeamBronze"
+        android:id="@+id/playerProfileBronze"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/profileTeamSilver"
+        app:layout_constraintBottom_toBottomOf="@+id/playerProfileSilver"
         app:layout_constraintEnd_toEndOf="@+id/textViewB"
-        app:layout_constraintStart_toEndOf="@+id/profileTeamSilver"
-        app:layout_constraintTop_toTopOf="@+id/profileTeamSilver" />
+        app:layout_constraintStart_toEndOf="@+id/playerProfileSilver"
+        app:layout_constraintTop_toTopOf="@+id/playerProfileSilver" />
 
     <TextView
-        android:id="@+id/profileMatchCount"
+        android:id="@+id/playerProfileTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="count"
+        android:text="team"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/profileTeamPrize" />
+        app:layout_constraintTop_toBottomOf="@+id/playerProfileDate" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/textViewL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -188,14 +189,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/profileTeamWR"
+        android:id="@+id/playerProfileWR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:text="100%"
-        app:layout_constraintBottom_toTopOf="@+id/profilePlayerWinRate"
-        app:layout_constraintEnd_toEndOf="@+id/profilePlayerWinRate"
+        app:layout_constraintBottom_toTopOf="@+id/playerProfileWinRate"
+        app:layout_constraintEnd_toEndOf="@+id/playerProfileWinRate"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewW" />
 
@@ -204,7 +205,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="158dp" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline11"
