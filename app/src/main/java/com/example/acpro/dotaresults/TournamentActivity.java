@@ -365,20 +365,22 @@ public class TournamentActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_matches) {
             Intent matchesIntent = new Intent(this, MainActivity.class);
             startActivity(matchesIntent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_tournaments) {
             Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_teams) {
             Intent teamsIntent = new Intent(this, TeamListActivity.class);
             startActivity(teamsIntent);
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_players) {
+            Intent playersRateIntent = new Intent(this, PlayerListActivity.class);
+            startActivity(playersRateIntent);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_pro_circuit) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_news) {
 
         }
 
