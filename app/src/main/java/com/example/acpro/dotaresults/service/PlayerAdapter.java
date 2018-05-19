@@ -49,7 +49,7 @@ public class PlayerAdapter extends BaseAdapter {
         Player player = getPlayer(i);
 
         ImageView photo = (ImageView) view1.findViewById(R.id.imagePlayer);
-        TextView nickname = (TextView) view1.findViewById(R.id.nicknamePlayer);
+        TextView nickname = (TextView) view1.findViewById(R.id.nicknamePlayerR);
         TextView info = (TextView) view1.findViewById(R.id.infoPlayer);
         TextView role = (TextView) view1.findViewById(R.id.rolePlayer);
         TextView winRate = (TextView) view1.findViewById(R.id.winRatePlayer);
