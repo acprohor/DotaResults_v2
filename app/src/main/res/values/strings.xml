@@ -16,4 +16,9 @@
     <string name="title_activity_team">TeamActivity</string>
     <string name="title_activity_player_list">PlayerListActivity</string>
     <string name="title_activity_player">PlayerActivity</string>
+    <string name="nothing_to_show_message">Noting to show</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_text">The data presented in this application\nare received from the cybersport.ru</string>
+    <string name="about">About</string>
+    <string name="produced">produced by Prohor</string>
 </resources>

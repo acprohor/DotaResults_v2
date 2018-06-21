@@ -34,7 +34,7 @@ public class TournamentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         GroupTable.OnFragmentInteractionListener {
 
-    public Elements match_item, headerInfo, tourSwitch, table_item, playoff_match_item, playoff_match_item2;
+    public Elements match_item, headerInfo, headerInfo2, tourSwitch, table_item, playoff_match_item, playoff_match_item2;
 
     public ArrayList<Match> matchList = new ArrayList<>();
     public ArrayList<TeamRate> tableItemsList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class TournamentActivity extends AppCompatActivity
     private MatchAdapter matchAdapter;
     private TeamRateAdapter teamRateAdapter;
     TextView textTourName, textTourLocation, textTourPrize, textTourDate, textTourGroup, textTourOff, textInfo;
-    String urlTour, contest, date, winner;
+    String urlTour, contest, date, winner, headerInfoString;
     ProgressBar loading;
     boolean activeButton [] = new boolean[3];
     boolean ready = true;
@@ -68,7 +68,6 @@ public class TournamentActivity extends AppCompatActivity
         urlTour = tempData.get(0);
         contest = tempData.get(1);
         urlTour = "https://www.cybersport.ru" + urlTour;
-        System.out.println("urltour in tourActivity " + urlTour);
 
         textTourName = findViewById(R.id.textTourName);
         textTourLocation = findViewById(R.id.textTourLocation);
@@ -154,10 +153,16 @@ public class TournamentActivity extends AppCompatActivity
             Document document;
             try {
                 document = Jsoup.connect(urlTour).userAgent("Mozilla").get();
-                headerInfo = document.select(".report__info");
+                headerInfo = document.select(".report__information");
+                headerInfo2 = headerInfo.select(".padding-left--15 padding-right--15");
                 tourSwitch = document.select(".tabs__item");
 
-                date = headerInfo.select("div").text();
+                ArrayList<String> info = new ArrayList<>();
+                for (Element content: headerInfo){
+                    headerInfoString = content.select(".padding-right--15").text();
+                }
+
+                // date = headerInfo.select("div").text();
 
                 updatedUrlList.clear();
                 for (Element content: tourSwitch){
@@ -279,54 +284,70 @@ public class TournamentActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(String s) {
-            textInfo.setVisibility(View.GONE);
-            textTourName.setText(contest);
-            String dd[] = date.split("проведения");
-            String dd1[] = dd[1].split("Серия");
-            textTourDate.setText("date: " + dd1[0]);
+            try {
+                textInfo.setVisibility(View.GONE);
+                textTourName.setText(contest);
+                /*String dd[] = date.split("проведения");
+                String dd1[] = dd[1].split("Серия");
+                textTourDate.setText("date: " + dd1[0]);*/
 
-            String loc[] = date.split("Локация");
-            String loc1[] = loc[1].split("Формат");
-            textTourLocation.setText("location: " + loc1[0]);
+                String dd[] = headerInfoString.split("проведения");
+                textTourDate.setText("date: " + dd[1]);
 
-            String pr[] = date.split("призовых");
-            String pr1[] = pr[1].split("Дата");
-            textTourPrize.setText("prize: " + pr1[0]);
+                /*String loc[] = date.split("Локация");
+                String loc1[] = loc[1].split("Формат");
+                textTourLocation.setText("location: " + loc1[0]);*/
 
-            if (!ready){
-                textInfo.setVisibility(View.VISIBLE);
-                textInfo.setText("coming soon");
-            }
+                String loc[] = headerInfoString.split("Сумма");
+                String loc1[] = loc[0].split("Локация");
+                textTourLocation.setText("location: " + loc1[1]);
 
-            if (activeButton[0]){
-                tourListView.setAdapter(teamRateAdapter);
-                loading.setVisibility(View.GONE);
-            }
+                /*String pr[] = date.split("призовых");
+                String pr1[] = pr[1].split("Дата");
+                textTourPrize.setText("prize: " + pr1[0]);
+*/
 
-            if (activeButton[1]) {
-                tourListView.setAdapter(matchAdapter);
-                loading.setVisibility(View.GONE);
-            }
+                String pr[] = headerInfoString.split("Дата");
+                String pr1[] = pr[0].split("призовых");
+                textTourPrize.setText("prize " + pr1[1]);
 
-            if (activeButton[2]){
-                if (!playoff){
+                if (!ready) {
                     textInfo.setVisibility(View.VISIBLE);
-                    textInfo.setText("without playoff stage");
-                    loading.setVisibility(View.GONE);
-                    matchList.clear();
-                    tourListView.setAdapter(matchAdapter);
-                } else {
-                    if (matchList.size() > 0) {
-                        tourListView.setAdapter(matchAdapter);
-                        loading.setVisibility(View.GONE);
-                    } else {
-                        textInfo.setText("nothing to show");
-                        textInfo.setVisibility(View.VISIBLE);
-                        loading.setVisibility(View.GONE);
-                        tourListView.setAdapter(matchAdapter);
-                    }
+                    textInfo.setText("coming soon");
                 }
 
+                if (activeButton[0]) {
+                    tourListView.setAdapter(teamRateAdapter);
+                    loading.setVisibility(View.GONE);
+                }
+
+                if (activeButton[1]) {
+                    tourListView.setAdapter(matchAdapter);
+                    loading.setVisibility(View.GONE);
+                }
+
+                if (activeButton[2]) {
+                    if (!playoff) {
+                        textInfo.setVisibility(View.VISIBLE);
+                        textInfo.setText("without playoff stage");
+                        loading.setVisibility(View.GONE);
+                        matchList.clear();
+                        tourListView.setAdapter(matchAdapter);
+                    } else {
+                        if (matchList.size() > 0) {
+                            tourListView.setAdapter(matchAdapter);
+                            loading.setVisibility(View.GONE);
+                        } else {
+                            textInfo.setText("nothing to show");
+                            textInfo.setVisibility(View.VISIBLE);
+                            loading.setVisibility(View.GONE);
+                            tourListView.setAdapter(matchAdapter);
+                        }
+                    }
+
+                }
+            } catch (ArrayIndexOutOfBoundsException e){
+                e.printStackTrace();
             }
         }
     }
@@ -366,22 +387,30 @@ public class TournamentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_matches) {
-            Intent matchesIntent = new Intent(this, MainActivity.class);
+            Intent matchesIntent =
+                    new Intent(this, MainActivity.class);
             startActivity(matchesIntent);
         } else if (id == R.id.nav_tournaments) {
-            Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
+            Intent tournamentsIntent =
+                    new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
         } else if (id == R.id.nav_teams) {
-            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            Intent teamsIntent =
+                    new Intent(this, TeamListActivity.class);
             startActivity(teamsIntent);
         } else if (id == R.id.nav_players) {
-            Intent playersRateIntent = new Intent(this, PlayerListActivity.class);
+            Intent playersRateIntent =
+                    new Intent(this, PlayerListActivity.class);
             startActivity(playersRateIntent);
 
         } else if (id == R.id.nav_pro_circuit) {
 
         } else if (id == R.id.nav_news) {
 
+        } else if (id == R.id.nav_info) {
+            Intent info =
+                    new Intent(this, AboutActivity.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

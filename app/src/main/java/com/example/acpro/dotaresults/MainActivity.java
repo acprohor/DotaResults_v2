@@ -1,9 +1,11 @@
 package com.example.acpro.dotaresults;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -118,24 +120,28 @@ public class MainActivity extends FragmentActivity
         @Override
         protected String doInBackground(String... strings) {
             Document document;
-            Document document2;
             try {
                 document = Jsoup.connect(globalUrl).userAgent("Mozilla").get();
-                document2 = Jsoup.connect("https://dota2.ru/esport/matches/").userAgent("Mozilla").get();
                 content = document.select(".matche__entrant");
-                content2 = document2.select(".team-vs-team");
 
                 matches.clear();
                 matchUrlList.clear();
 
                 for (Element content: content){
                     Match match = new Match();
-                    match.setTeamL(content.select(".matche__team--left .team__name .hidden-xs--inline-block").text());
-                    match.setScore(content.getElementsByClass("matche__score").text());
-                    match.setTeamR(content.select(".matche__team--right .team__name .hidden-xs--inline-block").text());
-                    String urlMatch = content.select(".matche__score").select("a").attr("href");
-                    if (!match.getScore().equals("") && !match.getTeamL().equals("") && !match.getTeamR().equals("")&&
-                            !match.getTeamL().equals("TBD") && !match.getTeamR().equals("TBD")) {
+                    match.setTeamL(content
+                                    .select(".matche__team--left .team__name .hidden-xs--inline-block")
+                                    .text());
+                    match.setScore(content.getElementsByClass("matche__score")
+                                    .text());
+                    match.setTeamR(content
+                                    .select(".matche__team--right .team__name .hidden-xs--inline-block")
+                                    .text());
+                    String urlMatch = content
+                            .select(".matche__score").select("a").attr("href");
+                    if (!match.getScore().equals("") && !match.getTeamL().equals("")
+                            && !match.getTeamR().equals("") && !match.getTeamL().equals("TBD")
+                            && !match.getTeamR().equals("TBD")) {
                         matches.add(match);
                         matchUrlList.add(urlMatch);
                     }
@@ -153,7 +159,7 @@ public class MainActivity extends FragmentActivity
             progressBar.setVisibility(View.GONE);
             if (matches.size() == 0){
                 textInfo.setVisibility(View.VISIBLE);
-                textInfo.setText("Noting to show");
+                textInfo.setText(R.string.nothing_to_show_message);
             }else {
                 textInfo.setVisibility(View.GONE);
             }
@@ -172,27 +178,34 @@ public class MainActivity extends FragmentActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_matches) {
-            Intent matchesIntent = new Intent(this, MainActivity.class);
+            Intent matchesIntent =
+                    new Intent(this, MainActivity.class);
             startActivity(matchesIntent);
         } else if (id == R.id.nav_tournaments) {
-            Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
+            Intent tournamentsIntent =
+                    new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
         } else if (id == R.id.nav_teams) {
-            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            Intent teamsIntent =
+                    new Intent(this, TeamListActivity.class);
             startActivity(teamsIntent);
         } else if (id == R.id.nav_players) {
-            Intent playersRateIntent = new Intent(this, PlayerListActivity.class);
+            Intent playersRateIntent =
+                    new Intent(this, PlayerListActivity.class);
             startActivity(playersRateIntent);
 
         } else if (id == R.id.nav_pro_circuit) {
 
         } else if (id == R.id.nav_news) {
 
+        } else if (id == R.id.nav_info) {
+            Intent info =
+                    new Intent(this, AboutActivity.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

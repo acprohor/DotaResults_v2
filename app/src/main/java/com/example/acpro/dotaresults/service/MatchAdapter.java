@@ -18,7 +18,8 @@ public class MatchAdapter extends BaseAdapter {
 
     public MatchAdapter(Context context, List<Match> list) {
         this.list = list;
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -41,7 +42,8 @@ public class MatchAdapter extends BaseAdapter {
         View view1 = view;
 
         if (view1 == null){
-            view1 = layoutInflater.inflate(R.layout.list_item, viewGroup, false);
+            view1 = layoutInflater
+                    .inflate(R.layout.list_item, viewGroup, false);
         }
         Match match = getMatch(i);
 

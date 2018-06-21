@@ -226,22 +226,30 @@ public class TeamActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_matches) {
-            Intent matchesIntent = new Intent(this, MainActivity.class);
+            Intent matchesIntent =
+                    new Intent(this, MainActivity.class);
             startActivity(matchesIntent);
         } else if (id == R.id.nav_tournaments) {
-            Intent tournamentsIntent = new Intent(this, TournamentsListActivity.class);
+            Intent tournamentsIntent =
+                    new Intent(this, TournamentsListActivity.class);
             startActivity(tournamentsIntent);
         } else if (id == R.id.nav_teams) {
-            Intent teamsIntent = new Intent(this, TeamListActivity.class);
+            Intent teamsIntent =
+                    new Intent(this, TeamListActivity.class);
             startActivity(teamsIntent);
         } else if (id == R.id.nav_players) {
-            Intent playersRateIntent = new Intent(this, PlayerListActivity.class);
+            Intent playersRateIntent =
+                    new Intent(this, PlayerListActivity.class);
             startActivity(playersRateIntent);
 
         } else if (id == R.id.nav_pro_circuit) {
 
         } else if (id == R.id.nav_news) {
 
+        } else if (id == R.id.nav_info) {
+            Intent info =
+                    new Intent(this, AboutActivity.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
